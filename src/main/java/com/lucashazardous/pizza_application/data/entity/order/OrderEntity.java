@@ -3,6 +3,8 @@ package com.lucashazardous.pizza_application.data.entity.order;
 import com.lucashazardous.pizza_application.data.entity.ordersize.OrderSizeEntity;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")

@@ -3,6 +3,8 @@ package com.lucashazardous.pizza_application.data.entity.ordersize;
 import com.lucashazardous.pizza_application.data.entity.pizza.PizzaEntity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "sizes")

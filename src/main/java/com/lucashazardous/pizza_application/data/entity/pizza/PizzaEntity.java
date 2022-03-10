@@ -3,6 +3,7 @@ package com.lucashazardous.pizza_application.data.entity.pizza;
 import com.lucashazardous.pizza_application.data.entity.size.SizeEntity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "pizzas")
