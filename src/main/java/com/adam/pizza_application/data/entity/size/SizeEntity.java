@@ -1,8 +1,12 @@
 package com.adam.pizza_application.data.entity.size;
 
 import com.adam.pizza_application.data.entity.order.OrderEntity;
+import com.adam.pizza_application.data.entity.ordersize.OrderSizeEntity;
+import com.adam.pizza_application.data.entity.pizza.PizzaEntity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "order_sizes")
@@ -13,21 +17,45 @@ public class SizeEntity {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "order_id")
-    private Integer orderId;
+    @Column(name = "size_type")
+    private String sizeType;
 
-    @Column(name = "size_id")
-    private Integer sizeId;
+    @Column(name = "price_base")
+    private BigDecimal priceBase;
+    @Column(name = "pizza_id")
+    private Integer pizzaId;
 
-    @Column(name = "size_count")
-    private Integer sizeCount;
-
+    @OneToMany(mappedBy = "size")
+    private Set<OrderSizeEntity> orderSizes;
     @ManyToOne
-    @JoinColumn(name = "order_id", insertable = false, updatable = false)
-    private OrderEntity order;
+    @JoinColumn(name = "pizza_id", insertable = false, updatable = false)
+    private PizzaEntity pizza;
 
-    @ManyToOne
-    @JoinColumn(name = "size_id", insertable = false, updatable = false)
-    private SizeEntity size;
+    public void setSizeType(String sizeType) {
+        this.sizeType = sizeType;
+    }
 
+    public void setPriceBase(BigDecimal priceBase) {
+        this.priceBase = priceBase;
+    }
+
+    public void setPizzaId(Integer pizzaId) {
+        this.pizzaId = pizzaId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getSizeType() {
+        return sizeType;
+    }
+
+    public BigDecimal getPriceBase() {
+        return priceBase;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

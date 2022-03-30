@@ -21,7 +21,21 @@ public class PizzaEntity {
     @OneToMany(mappedBy = "pizza", orphanRemoval = true)
     private Set<SizeEntity> sizes;
 
+    public PizzaEntity(Integer id) {
+        this.id = id;
+    }
 
+    public PizzaEntity() {
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;

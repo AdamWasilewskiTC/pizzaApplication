@@ -9,6 +9,10 @@ public class SizeDto {
     private SizeType size;
     private BigDecimal price;
 
+    public SizeDto() {
+
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
