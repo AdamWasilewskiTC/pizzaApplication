@@ -9,11 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SizeMapper {
     public SizeEntity mapToSizeEntity(AddSizeDto addSizeDto, Integer pizzaId) {
-    SizeEntity sizeEntity = new SizeEntity();
+        SizeEntity sizeEntity = new SizeEntity();
         sizeEntity.setSizeType(addSizeDto.getSize().name());
         sizeEntity.setPriceBase(addSizeDto.getPrice());
         sizeEntity.setPizzaId(pizzaId);
-        return sizeEntity;}
+        return sizeEntity;
+    }
+
     public SizeDto mapToSizeDto(SizeEntity sizeEntity) {
         SizeDto sizeDto = new SizeDto();
         sizeDto.setSize(SizeType.valueOf(sizeEntity.getSizeType()));
@@ -21,5 +23,4 @@ public class SizeMapper {
         sizeDto.setId(sizeEntity.getId());
         return sizeDto;
     }
-
 }

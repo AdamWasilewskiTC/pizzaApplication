@@ -5,10 +5,12 @@ import com.adam.pizza_application.data.entity.pizza.PizzaEntity;
 import com.adam.pizza_application.data.entity.size.SizeEntity;
 import com.adam.pizza_application.data.repository.PizzaRepository;
 import com.adam.pizza_application.data.repository.SizeRepository;
+import com.adam.pizza_application.domain.exception.ResorceNotFoundException;
 import com.adam.pizza_application.domain.mapper.PizzaMapper;
 import com.adam.pizza_application.domain.mapper.SizeMapper;
 import com.adam.pizza_application.remote.rest.dto.request.AddPizzaDto;
 import com.adam.pizza_application.remote.rest.dto.request.AddSizeDto;
+import com.adam.pizza_application.remote.rest.dto.response.MenuDto;
 import com.adam.pizza_application.remote.rest.dto.response.PizzaDto;
 import com.adam.pizza_application.remote.rest.dto.response.SizeDto;
 import org.springframework.stereotype.Service;
@@ -63,5 +65,24 @@ public class PizzaService {
                 .collect(Collectors.toList());
 
 
+
+        return pizzaMapper.mapToPizzaDto(pizzaEntity, sizeDtoList);
     }
+    public MenuDto getMenu(){
+        List<PizzaEntity> pizzaEntities = pizzaRepository.findAll();
+        List<PizzaDto> pizzaDtoList = pizzaEntities
+                .stream()
+                .map(pizzaEntity -> pizzaMapper.mapToPizzaDto(pizzaEntity))
+                .collect(Collectors.toList());
+        return new MenuDto(pizzaDtoList);
+    }
+    public void deletePizza(Integer pizzaId, String token) {
+        checkToken(token);
+        boolean pizzaExist = pizzaRepository.existsById(pizzaId);
+        if(!pizzaExist)
+            throw new ResorceNotFoundException("Pizza does not exist");
+        pizzaRepository.deleteById(pizzaId);
+
+    }
+
 }

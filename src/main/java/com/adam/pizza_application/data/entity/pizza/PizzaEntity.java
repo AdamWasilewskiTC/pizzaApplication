@@ -40,4 +40,12 @@ public class PizzaEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public Set<SizeEntity> getSizes() {return sizes;
+    }
 }
